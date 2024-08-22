@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Passport to Maths: JSX GraphBuilder</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraph.css">
+  <script src="https://cdn.jsdelivr.net/npm/jsxgraph/distrib/jsxgraphcore.js"></script>
+  <script src="script.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h2>Passport to Maths: JSX GraphBuilder</h2>
+        <p>This web application provides a straightforward interface where users can input values, which are then used to generate and display mathematical graphs.</p>
+    </header>
+  <div class="container mt-5">
+    <div id="jxgbox" class="jxgbox"></div>
+    <hr>
+    <h3 class="p2m-label">Board property</h3>
+    <label for="width">Width: </label>
+    <input id="width" type="number" value="800">
+    <label for="height">Height: </label>
+    <input id="height" type="number" value="800">
+    <button type="submit" onclick="resizeBoard()">Resize Board</button>
+    <h3 class="p2m-label">Line Stroke property</h3>
+    <label for="strokeWidth">Set Stroke Width: </label>
+    <input id="strokeWidth" type="number" value="6">
+    <button type="submit" onclick="updateStrokeWidth()">Update Stroke Width</button>
+    <h3 class="p2m-label">Export Image</h3>
+    <button type="submit" onclick="exportBoard()">Export as PNG image</button>
+    <br>
+    <hr>
+    <h3 class="p2m-label">Generate the graph(s)</h3>
+    <div class="container">
+        <div class="tabs">
+          <div class="tab active" data-tab="fx">F(x) Equation</div>
+          <div class="tab" data-tab="circle">Circle Equation</div>
+          <div class="tab" data-tab="ellipse">Ellipse Equation</div>
+          <div class="tab" data-tab="hyperbola">Equation for Hyperbola</div>
+          <div class="tab" data-tab="piecewise">Piecewise Function</div>
+        </div>
+        <div class="tab-content">
+          <div id="fx" class="tab-pane active">
+              <p><strong>Graph<sub>1</sub></strong></p>
+              <label for="equation">Add Equation for blue line (use 'x' as the variable): </label>
+              <input id="equation" type="text" value="x*x">&nbsp; <br>
+              <label for="lowerBound1">Lower Bound for Line 1: </label>
+              <input id="lowerBound1" type="number" value="-50">&nbsp;
+              <label for="upperBound1">Upper Bound for Line 1: </label>
+              <input id="upperBound1" type="number" value="50">&nbsp;
+              <select id="colorForf1">
+                  <option value="#4d4dff">Blue</option>
+                  <option value="#4d934d">Green</option>
+                  <option value="#ff884d">Orange</option>
+                  <option value="#444242">Grey</option>
+                  <option value="#850dca">Purple</option>
+                  <option value="#898054">Brown</option>
+              </select>
+              <button type="submit" onclick="addFirstLine()">Add/update First Line</button>&nbsp;<button type="submit" onclick="removeFirstLine()">Remove First Line</button>
+              <br><br>
+              <p><strong>Graph<sub>2</sub></strong></p>
+              <label for="equation2">Add Equation 2 for orange line (use 'x' as the variable): </label>
+              <input id="equation2" type="text" value="">&nbsp;<br>
+              <label for="lowerBound2">Lower Bound for Line 2: </label>
+              <input id="lowerBound2" type="number" value="-50">&nbsp;
+              <label for="upperBound2">Upper Bound for Line 2: </label>
+              <input id="upperBound2" type="number" value="50">&nbsp;
+              <select id="colorForf2">
+                  <option value="#4d934d">Green</option>
+                  <option value="#4d4dff">Blue</option>
+                  <option value="#ff884d">Orange</option>
+                  <option value="#444242">Grey</option>
+                  <option value="#850dca">Purple</option>
+                  <option value="#898054">Brown</option>
+              </select>
+              <button type="submit" onclick="addSecondLine()">Add/update Second Line</button>&nbsp;<button type="submit" onclick="removeSecondLine()">Remove Second Line</button>
+              <br><br>
+              <p><strong>Graph<sub>3</sub></strong></p>
+              <label for="equation3">Add Equation 3 for green line (use 'x' as the variable): </label>
+              <input id="equation3" type="text" value="">&nbsp;<br>
+              <label for="lowerBound3">Lower Bound for Line 3: </label>
+              <input id="lowerBound3" type="number" value="-50">&nbsp;
+              <label for="upperBound3">Upper Bound for Line 3: </label>
+              <input id="upperBound3" type="number" value="50">&nbsp;
+              <select id="colorForf3">
+                  <option value="#ff884d">Orange</option>
+                  <option value="#4d4dff">Blue</option>
+                  <option value="#4d934d">Green</option>
+                  <option value="#444242">Grey</option>
+                  <option value="#850dca">Purple</option>
+                  <option value="#898054">Brown</option>
+              </select>
+              <button type="submit" onclick="addThirdLine()">Add/update Third Line</button>&nbsp;<button type="submit" onclick="removeThridLine()">Remove Thrid Line</button>
+              <br><br>
+              <p><strong>Graph<sub>4</sub></strong></p>
+              <label for="equation4">Add Equation 4 for red line (use 'x' as the variable): </label>
+              <input id="equation4" type="text" value="">&nbsp;
+              <br>
+              <label for="lowerBound4">Lower Bound for Line 4: </label>
+              <input id="lowerBound4" type="number" value="-50">&nbsp;
+              <label for="upperBound4">Upper Bound for Line 4: </label>
+              <input id="upperBound4" type="number" value="50">&nbsp;
+              <select id="colorForf4">
+                  <option value="#850dca">Purple</option>
+                  <option value="#4d4dff">Blue</option>
+                  <option value="#4d934d">Green</option>
+                  <option value="#ff884d">Orange</option>
+                  <option value="#444242">Grey</option>
+                  <option value="#898054">Brown</option>
+              </select>
+              <button type="submit" onclick="addFourthLine()">Add/update Fourth Line</button>&nbsp;<button type="submit" onclick="removeFourthLine()">Remove Fourth Line</button>
+              <br><br>
+              <p><strong>Graph<sub>5</sub></strong></p>
+              <label for="equation5">Add Equation 5 (use 'x' as the variable): </label>
+              <input id="equation5" type="text" value="">&nbsp;
+              <br>
+              <label for="lowerBound5">Lower Bound for Line 5: </label>
+              <input id="lowerBound5" type="number" value="-50">&nbsp;
+              <label for="upperBound5">Upper Bound for Line 5: </label>
+              <input id="upperBound5" type="number" value="50">&nbsp;
+              <select id="colorForf5">
+                  <option value="#898054">Brown</option>
+                  <option value="#4d4dff">Blue</option>
+                  <option value="#4d934d">Green</option>
+                  <option value="#ff884d">Orange</option>
+                  <option value="#444242">Grey</option>
+                  <option value="#850dca">Purple</option>
+              </select>
+              <button type="submit" onclick="addFifthLine()">Add/update Fifth Line</button>&nbsp;<button type="submit" onclick="removeFifthLine()">Remove Fifth Line</button>
+          </div>
+          <div id="circle" class="tab-pane">
+              <p>Equation: <br><img alt="Circle equation" src="./img/circle equation.png"></p>
+              <label for="circle-k"> k:  </label>&nbsp;<input type="number" id="circle-k">&nbsp;&nbsp;
+              <label for="circle-h"> h:  </label>&nbsp;<input type="number" id="circle-h">&nbsp;&nbsp;
+              <label for="circle-r"> r:  </label>&nbsp;<input type="number" id="circle-r">&nbsp;&nbsp;
+              <select id="colorForCircle">
+                  <option value="#4d4dff">Blue</option>
+                  <option value="#4d934d">Green</option>
+                  <option value="#ff884d">Orange</option>
+                  <option value="#444242">Grey</option>
+              </select>
+              <button type="submit" onclick="generateCircle()">Create/Update circle</button>
+              <button type="submit" onclick="removeCircle()">Reset</button>
+          </div>
+          <div id="ellipse" class="tab-pane">
+            <p>Equation: <br><img alt="Ellipse equation" src="./img/ellipse equation.png"></p>
+              <label for="ellipse-a">a:</label>
+              <input type="number" id="ellipse-a">
+              <label for="ellipse-b">b:</label>
+              <input type="number" id="ellipse-b">
+              <label for="ellipse-h">h (center x-coordinate):</label>
+              <input type="number" id="ellipse-h">
+              <label for="ellipse-k">k (center y-coordinate):</label>
+              <input type="number" id="ellipse-k"> <br><br>
+              <select id="colorForEllipse">
+                  <option value="#4d4dff">Blue</option>
+                  <option value="#4d934d">Green</option>
+                  <option value="#ff884d">Orange</option>
+                  <option value="#444242">Grey</option>
+              </select>
+              <button type="submit" onclick="updateEllipse()">Create/Update graph</button>
+              <button type="submit" onclick="removeEllipse()">Reset</button>
+          </div>
+          <div id="hyperbola" class="tab-pane">
+            <p>Equation: <br><img alt="Hyperbola equation" src="./img/hyperbola.png"></p>
+              <label for="hyperbola-a">a: </label>&nbsp;<input type="number" id="hyperbola-a" >
+              <label for="hyperbola-b">b: </label>&nbsp;<input type="number" id="hyperbola-b" >
+              <label for="hyperbola-h">h: </label>&nbsp;<input type="number" id="hyperbola-h" >
+              <label for="hyperbola-k">k: </label>&nbsp;<input type="number" id="hyperbola-k" >
+              <br>
+              <label for="colorForHyperbola">Colour of Curve1</label>
+              <select id="colorForHyperbola">
+                <option value="#4d4dff">Blue</option>
+                <option value="#4d934d">Green</option>
+                <option value="#ff884d">Orange</option>
+                <option value="#444242">Grey</option>
+            </select>
+            <br>
+            <label for="colorForHyperbola2">Colour of Curve2:</label>
+            <select id="colorForHyperbola2">
+              <option value="#4d4dff">Blue</option>
+              <option value="#4d934d">Green</option>
+              <option value="#ff884d">Orange</option>
+              <option value="#444242">Grey</option>
+          </select>
+              <button type="submit" onclick="generateHyperbola()">Create/Update graph</button>
+              <button type="submit" onclick="removeHyperbola()">Reset</button>
+          </div>
+          <div id="piecewise" class="tab-pane">
+            <p>Equation: <br><img alt="Piecewise equation" src="./img/piecewise.png"></p>
+              <label for="piecewise-function1">Function 1:</label>
+              <input type="text" id="piecewise-function1"> <br>
+              <label for="piecewise-function2">Function 2 (Optional):</label>
+              <input type="text" id="piecewise-function2" placeholder="skip if only 2 functions"> <br>
+              <label for="piecewise-function3">Function 3 :</label>
+              <input type="text" id="piecewise-function3"> <br><br>
+              <label for="piecewise-xLimit1">Value of limit<sub>1</sub>:</label>
+              <input type="number" id="piecewise-xLimit1">
+              <label for="piecewise-xLimit2">Value of limit<sub>2</sub>:</label>
+              <input type="number" id="piecewise-xLimit2"> <br><br>
+              <select id="colorForPiecewise">
+                  <option value="#4d4dff">Blue</option>
+                  <option value="#4d934d">Green</option>
+                  <option value="#ff884d">Orange</option>
+                  <option value="#444242">Grey</option>
+              </select>
+              <button type="submit" onclick="updatePiecewise()">Create/Update graph</button>
+              <button type="submit" onclick="removePiecewise()">Reset</button>
+            </div>
+        </div>
+    </div>
+    <br><hr>
+    <h3 class="p2m-label">Genereate the Vertical/Horizontal Line(s)</h3>
+    <div class="reminder-box">
+        Instruction: You can create more than one vertical or horizontal lines.
+        </div>
+    <label for="x_Verline">Create Vertical Line at x = </label>
+    <input id="x_Verline" type="number" value="">&nbsp;
+    <select id="lineColor">
+        <option value="#4d4dff">Blue</option>
+        <option value="#4d934d">Green</option>
+        <option value="#ff884d">Orange</option>
+        <option value="#444242">Grey</option>
+    </select>
+    <input type="checkbox" id="dashedLine" name="dashedLine">
+    <label for="dashedLine">Dashed Line</label>
+    <button type="submit" onclick="addVerticalLine()">Create Vertical Line</button>
+    &nbsp;<button type="submit" onclick="removeVerticalLine()">Remove Vertical Line(s)</button>
+    <br>
+    <label for="y_Horline">Create Horizontal Line at y = </label>
+    <input id="y_Horline" type="number" value="">&nbsp;
+    <select id="lineColorHorizontal">
+        <option value="#4d4dff">Blue</option>
+        <option value="#4d934d">Green</option>
+        <option value="#ff884d">Orange</option>
+        <option value="#444242">Grey</option>
+    </select>
+    <input type="checkbox" id="dashedLineHorizontal" name="dashedLineHorizontal">
+    <label for="dashedLineHorizontal">Dashed Line</label>
+    <button type="submit" onclick="addHorizontalLine()">Create Horizontal Line</button>
+    &nbsp;<button type="submit" onclick="removeHorizontalLine()">Remove Horizontal Line(s)</button>
+    <hr>
+    <h3 class="p2m-label">Insert Text</h3>
+    <div class="reminder-box">
+    Instruction: You can add the text label and remove the extra label by using the remove button.
+    </div>
+    <label for="textLabels">Insert Text Content: </label>
+    <input type="text" id="textLabels" placeholder="Enter your text here">
+    <button type="submit" onclick="addTextLabel()">Insert the text(s)</button>
+    <div id="labelList"></div>
+    <br>
+    <h3 class="p2m-label">Insert Point(s)</h3>
+    <div class="reminder-box">
+        Instruction: You can insert more than one points, and remove the extra points by using the remove button.
+        </div>
+    <label for="pointX">X Coordinate: </label>
+    <input id="pointX" type="number" value="">&nbsp;
+    <label for="pointY">Y Coordinate: </label>
+    <input id="pointY" type="number" value="">&nbsp;
+    <label for="pointType">Point Type: </label>
+    <select id="pointType">
+        <option value="filled">Filled Point</option>
+        <option value="outline">Outline Point</option>
+    </select>
+    <button type="submit" onclick="addPoint()">Create Point(s)</button>
+    &nbsp;<button type="submit" onclick="removeLastPoint()">Remove Point(s)</button>
+  </div>
+  <footer>
+    <p>This application developed by Monash College Learning Design and Digital Innovation Team and under the MIT License.</p>
+    <p>This project incorporates the JSXGraph library to deliver its interactive graphing features.More details about JSXGraph can be found at <a href="htttps//jsxgraph.org">JSXGraph</a>.</p>
+  </footer>
+
+</body>
+</html>
