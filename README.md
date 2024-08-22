@@ -1,7 +1,7 @@
 # Passport-to-Maths-JSX-GraphBuilder
 
 ## Project Description
-The Passport to Maths: JSX Graph Maker application was developed by the Learning Design and Digital Innovation team at Monash College in Melbourne, Australia, as part of a project to create a suite of online asynchronous mathematics learning modules. The program facilitates student success by providing a personalised program of learning. We are releasing the code for the Passport to Maths: JSX Graph Maker to allow other learning design teams to benefit from this innovation. 
+The Passport to Maths: JSX GraphBuilder application was developed by the Learning Design and Digital Innovation team at Monash College in Melbourne, Australia, as part of a project to create a suite of online asynchronous mathematics learning modules. The program facilitates student success by providing a personalised program of learning. We are releasing the code for the Passport to Maths: JSX GraphBuilder to allow other learning design teams to benefit from this innovation. 
 This project is a user-friendly web application designed to simplify the process of creating and customising mathematical graphs for non-technical users. The application provides a straightforward interface where users can input values, which are then used to generate and display mathematical graphs. This functionality is made possible through the use of the JSXGraph library. 
 
 ## Use of JSXGraph
