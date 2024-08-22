@@ -8,6 +8,18 @@ This project is a user-friendly web application designed to simplify the process
 This project utilises the JSXGraph library to provide the core functionality for creating customised mathematical graphs. We have developed a tool on top of JSXGraph that allows non-technical users to easily generate and manipulate graphs through a user-friendly interface.
 JSXGraph is an independent library maintained by the Mathematical Institute at the University of Bayreuth and is licensed under the GNU Lesser General Public License (LGPL). Our tool simply extends the capabilities of JSXGraph to make graph creation accessible to everyone. More details about JSXGraph can be found at https://jsxgraph.org.
 
+## How to Use
+### 1. Download or Clone the Repository:
+Download the project files as a ZIP or clone the repository using  `git clone`.
+### 2. Open the Application:
+Navigate to the project directory and open index.html in your web browser.
+### 3. Using the Graph Builder:
+The **Passport-to-Maths-JSX-GraphBuilder** allows you to create graphs for up to **five different f(x) equations, as well as circles, ellipses, hyperbolas, and piecewise functions**.
+Enter the appropriate values following the instructions provided on the page. Ensure that you input values in the correct format.
+You can use the **JavaScript Math object** to perform mathematical operations (e.g., Math.PI for π, Math.log() for logarithms).
+### 4. Start Graphing:
+After entering your equations and values, the graphs will be dynamically generated and displayed on the page.
+
 ## Copyright and Licensing
 This project incorporates the JSXGraph library to deliver its interactive graphing features. All rights to JSXGraph belong to its original developers, and we do not claim any ownership of it. JSXGraph is licensed under the GNU Lesser General Public License (LGPL).
 The custom code created specifically for this project is licensed under the MIT License. The MIT License allows for free use, modification, and distribution of our original code, with appropriate credit.
